@@ -17,13 +17,13 @@ using System.Numerics;
 using System.Threading;
 
 
-namespace GB_Q_lesson005
+namespace GB_Q2_lesson005
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("begin");
+            Console.WriteLine("                ............... begin ... ");
             Dispatcher d1 = new Dispatcher();
             d1.Run("T1");
         }
@@ -39,23 +39,36 @@ namespace GB_Q_lesson005
     {
         public void Run(string TaskName)
         {
-
-            string question1 = "\t\tEnter number task (1...5) and press [Enter]:";
+            bool exit = false;
+            string question1 = "\t\tPlease, enter number task (1...5) or 0 (digit  zero)" +
+                "\n\t\tand press [Enter] :";
+            string question2 = "\t\tOK. Your chice:[{0}]\n\t\tNow runing [Task00{0}]";
             InOut io1 = new InOut();
-
+            Tasks tsk1 = new Tasks();
             int i = 1;
             do
             {
+                Console.WriteLine(question1, i);
                 i = io1.GetValueFromConsole("");
-                Console.ReadKey();
-
-            }
-
-            while (i < 100);
-
-
-
-        }
+                switch (i)
+                {
+                    case 0:
+                        exit = true;
+                        Console.WriteLine("\t\tHave nice day! Buy!");
+                        break;
+                    case 1:
+                        tsk1.Task001();
+                        break;
+                    case 2:
+                        tsk1.Task002();
+                        break;
+                    case 3:
+                        tsk1.Task003();
+                        break;
+                }
+                if (exit == true) { break; }
+            } while (i == 0);
+        } // enf_of_Run
 
     }// end_of_class_Dispatcher
 
@@ -64,10 +77,19 @@ namespace GB_Q_lesson005
     {
         public void Task001()
         {
-            Console.WriteLine("OK/ Now trying run the .. ");  //  Run (string TaskName)
+            Console.WriteLine("OK/ Now trying run the  Task001 ... ");  //  Run (string TaskName)
             Console.ReadKey();
         }
-
+        public void Task002()
+        {
+            Console.WriteLine("OK/ Now trying run the Task002 ... ");  //  Run (string TaskName)
+            Console.ReadKey();
+        }
+        public void Task003()
+        {
+            Console.WriteLine("OK/ Now trying run the Task003 ... ");  //  Run (string TaskName)
+            Console.ReadKey();
+        }
     } // end class Tasks 
 
     class InOut
@@ -75,7 +97,7 @@ namespace GB_Q_lesson005
         public int GetValueFromConsole(string textQuestion)
         {
             int result = 0;
-            string textQuetionByDef = "\t\tPlease, enter number task (1...5) and press [Enter] :";
+            string textQuetionByDef = "\t\tEnter value and press [Enter]:";
             var valueByDef = "1";
             textQuestion = string.IsNullOrEmpty(textQuestion) == true ? textQuetionByDef : textQuestion;
             // Запрос на ввод значения . 
@@ -98,8 +120,12 @@ namespace GB_Q_lesson005
             {
                 if (int.TryParse(inputValue, out result) == true)
                 {
+
+                }
+                else
+                {
                     Console.WriteLine("\t\tError input value or data." +
-                        "\n\t\tSet value by default or re-enter ?");
+       "\n\t\tSet value by default or re-enter ?");
                 }
             }
             return result;
