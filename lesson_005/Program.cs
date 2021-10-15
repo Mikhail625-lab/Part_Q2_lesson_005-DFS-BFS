@@ -6,6 +6,10 @@ autor: Mikhail625@protonmail.com
 Tip: for formatting Ctrl + K, а затем Ctrl + D.
 */
 
+/*
+Реализуйте DFS и BFS для дерева с выводом каждого шага в консоль.
+*/
+
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +19,10 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Numerics;
 using System.Threading;
-
+/*
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
+*/
 
 namespace GB_Q2_lesson005
 {
@@ -26,12 +33,13 @@ namespace GB_Q2_lesson005
             Console.WriteLine("                ............... begin ... ");
             Dispatcher d1 = new Dispatcher();
             d1.Run("T1");
-        }
-    }// end_of_Main()
-    /*
-     *
+        }  // end_of_Main()
+    }// end_of_class Program
 
-     * */
+
+    /*
+    
+     */
     class Launch
     { }// end_of_class_Launch
 
@@ -79,6 +87,13 @@ namespace GB_Q2_lesson005
         {
             Console.WriteLine("OK/ Now trying run the  Task001 ... ");  //  Run (string TaskName)
             Console.ReadKey();
+
+            int qtyNodes = 11;
+            Tree tree1 = new Tree();
+            Node[] nodes1 = new Node[qtyNodes];
+
+
+
         }
         public void Task002()
         {
@@ -125,7 +140,7 @@ namespace GB_Q2_lesson005
                 else
                 {
                     Console.WriteLine("\t\tError input value or data." +
-       "\n\t\tSet value by default or re-enter ?");
+                                    "\n\t\tSet value by default or re-enter ?");
                 }
             }
             return result;
@@ -143,24 +158,40 @@ namespace GB_Q2_lesson005
 
         }  // end_of_Tree
 
-        public class Node
-        {
-            public Node Left;
-            public Node Right;
-            public int Value;
-            public bool IsLeaf;
-            public bool Visit;
+    } // end_of_class Tree //
 
-            public Node(Node l, Node r, int v)
-            {
-                Left = l;
-                Right = r;
-                Value = v;
-                IsLeaf = false;
-                Visit = false;
-            }
+    class Node
+    {
+        public Node Left;
+        public Node Right;
+        public int Value;
+        public bool IsLeaf;
+        public bool Visit;
+
+        public Node(Node l, Node r, int v)
+        {
+            Left = l;
+            Right = r;
+            Value = v;
+            IsLeaf = false;
+            Visit = false;
         }
 
+        public void DisplayNode(Node nd1)
+        {
+            Console.WriteLine("\t\tLeft:[{0}]      Right:[{1}]" , nd1.Left , nd1.Right );
+                }
+    }  //  end_of_class Node
+
+    class RRandom
+    {
+        public int GetRandomInt32 (int minV, int maxV)
+        {
+            Random rnd1 = new Random(); 
+            return rnd1.Next(minV, maxV); 
+        } // end_of_GetRandomInt32
 
 
-    } // end_of_namespace GB_Q_lesson00
+    } // end_of_RRandom
+} // end_of_namespace GB_Q_lesson00
+
