@@ -132,5 +132,35 @@ namespace GB_Q2_lesson005
         }//end_of_GetValueFromConsole
     }
 
+    class Tree // Kata
+    {
+        public static List<int> TreeByLevels(Node node)
+        {
+            //off ya go!
+            var l1 = new List<int>();
+            l1.Add(node.Value);
+            return l1;
 
-} // end_of_namespace GB_Q_lesson00
+        }  // end_of_Tree
+
+        public class Node
+        {
+            public Node Left;
+            public Node Right;
+            public int Value;
+            public bool IsLeaf;
+            public bool Visit;
+
+            public Node(Node l, Node r, int v)
+            {
+                Left = l;
+                Right = r;
+                Value = v;
+                IsLeaf = false;
+                Visit = false;
+            }
+        }
+
+
+
+    } // end_of_namespace GB_Q_lesson00
