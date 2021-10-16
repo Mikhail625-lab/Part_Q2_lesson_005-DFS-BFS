@@ -91,6 +91,9 @@ namespace GB_Q2_lesson005
             int qtyNodes = 11;
             Tree tree1 = new Tree();
             Node[] nodes1 = new Node[qtyNodes];
+            // https://www.tutlane.com/tutorial/csharp/csharp-list
+            List<Node> ln2 = new List<Node>();
+
 
 
 
@@ -193,5 +196,7 @@ namespace GB_Q2_lesson005
 
 
     } // end_of_RRandom
+
+
 } // end_of_namespace GB_Q_lesson00
 
