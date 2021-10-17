@@ -47,7 +47,7 @@ namespace GB_Q2_lesson005
     {
         public void Run(string TaskName)
         {
-            bool exit = false;
+            bool mustExit = false;
             string question1 = "\t\tPlease, enter number task (1...5) or 0 (digit  zero)" +
                 "\n\t\tand press [Enter] :";
             string question2 = "\t\tOK. Your chice:[{0}]\n\t\tNow runing [Task00{0}]";
@@ -61,7 +61,7 @@ namespace GB_Q2_lesson005
                 switch (i)
                 {
                     case 0:
-                        exit = true;
+                        mustExit = true;
                         Console.WriteLine("\t\tHave nice day! Buy!");
                         break;
                     case 1:
@@ -74,7 +74,7 @@ namespace GB_Q2_lesson005
                         tsk1.Task003();
                         break;
                 }
-                if (exit == true) { break; }
+                if (mustExit == true) { break; }
             } while (i == 0);
         } // enf_of_Run
 
@@ -92,11 +92,19 @@ namespace GB_Q2_lesson005
             Tree tree1 = new Tree();
             Node[] nodes1 = new Node[qtyNodes];
             // https://www.tutlane.com/tutorial/csharp/csharp-list
-            List<Node> ln2 = new List<Node>();
+            List<Node>[] aln1 = new List<Node>[qtyNodes];
+            Node[] an1 = new Node[qtyNodes]; 
+            //people.Add(new Person() { Name = "Том" })
+            for (int i=0;i< qtyNodes; i++)
+            {
+                an1[i] = new Node(){Value  =i *i};
+                an1[i].data = i;
+            }  
 
+            foreach (Node n in an1)
+                { n.DisplayInfo();  }
 
-
-
+            Console.WriteLine("\t\tThat's all"); Console.ReadKey();
         }
         public void Task002()
         {
@@ -165,21 +173,32 @@ namespace GB_Q2_lesson005
 
     class Node
     {
-        public Node Left;
-        public Node Right;
-        public int Value;
-        public bool IsLeaf;
-        public bool Visit;
+        public Node Left     ;
+        public Node Right    ;
+        public int  Value    ;
+        public int  data     ; 
+        public bool IsLeaf   ;
+        public bool Visit    ;
 
+        public int Data {  get { return data ;}  
+            set { data = value;  }}
+        public Node()
+        { Data = 0; }
         public Node(Node l, Node r, int v)
         {
             Left = l;
             Right = r;
-            Value = v;
+            Data = v;
             IsLeaf = false;
             Visit = false;
         }
 
+        public void DisplayInfo()
+        {
+            Console.WriteLine("\t\tData[{0}]      Value:[{1}]      " +
+                "Left:[{2}]      Right:[{3}]", 
+                this.data , this.Value , this.Left , this.Right );
+                }
         public void DisplayNode(Node nd1)
         {
             Console.WriteLine("\t\tLeft:[{0}]      Right:[{1}]" , nd1.Left , nd1.Right );
