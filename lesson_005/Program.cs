@@ -23,6 +23,14 @@ using System.Threading;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 */
+using Utilites_Random;
+using BNode;
+
+
+
+
+
+
 
 namespace GB_Q2_lesson005
 {
@@ -86,13 +94,13 @@ namespace GB_Q2_lesson005
         public void Task001()
         {
             Console.WriteLine("OK/ Now trying run the  Task001 ... ");  //  Run (string TaskName)
-            Console.ReadKey();
-
+            //Console.ReadKey();
+            Thread.Sleep(100);
             int qtyNodes = 11;
             Tree tree1 = new Tree();
             Node[] nodes1 = new Node[qtyNodes];
             // https://www.tutlane.com/tutorial/csharp/csharp-list
-            List<Node>[] aln1 = new List<Node>[qtyNodes];
+            // List<Node>[] aln1 = new List<Node>[qtyNodes]; //with List<> пока не получается 
             Node[] an1 = new Node[qtyNodes]; 
             //people.Add(new Person() { Name = "Том" })
             for (int i=0;i< qtyNodes; i++)
@@ -109,7 +117,12 @@ namespace GB_Q2_lesson005
         public void Task002()
         {
             Console.WriteLine("OK/ Now trying run the Task002 ... ");  //  Run (string TaskName)
-            Console.ReadKey();
+            //Console.ReadKey();
+            for (int i = 0; i < 22; i++)
+            {
+                Console.WriteLine("RandomProvider" + "\t\t" + RandomProvider.GetThreadRandomStringValue(1,40));
+            }
+            
         }
         public void Task003()
         {
@@ -202,19 +215,13 @@ namespace GB_Q2_lesson005
         public void DisplayNode(Node nd1)
         {
             Console.WriteLine("\t\tLeft:[{0}]      Right:[{1}]" , nd1.Left , nd1.Right );
-                }
+        }
     }  //  end_of_class Node
 
-    class RRandom
-    {
-        public int GetRandomInt32 (int minV, int maxV)
-        {
-            Random rnd1 = new Random(); 
-            return rnd1.Next(minV, maxV); 
-        } // end_of_GetRandomInt32
 
 
-    } // end_of_RRandom
+
+    
 
 
 } // end_of_namespace GB_Q_lesson00
