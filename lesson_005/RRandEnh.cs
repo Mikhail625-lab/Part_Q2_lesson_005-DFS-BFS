@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Utilites_Random
+namespace UtilitesRandom
 {
     public static class RandomProvider
     {
@@ -23,6 +23,7 @@ namespace Utilites_Random
         {
             return (uint)(randomWrapper.Value.Next(min, max));
         }
+
 
     }
 }
