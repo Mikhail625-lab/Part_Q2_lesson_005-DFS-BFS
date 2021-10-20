@@ -162,50 +162,52 @@ namespace BTreePrinter
                 } while (validValue == true);
             }
 
+
+            // раздача дочек-сыночков 
             for (int i = 0; i < qtyElements; i++)
-            { }
-            if (pool2.Count() == bnod.Count())
-            { pool2.Remove(0);
-            }
-            else
-            { }
-        } // end_of_for )(int i
-
-            /*
-            // связываем, назначаем дочек-сыночков
-            // //Random rand = new Random();
-            
-            // get p{ }
-
-
-           
             {
-                if (pool.Count <= 0)
+                if (pool2.Count() == 0) break;
+                if (pool2.Count() == bnod.Count())
                 {
-                    Console.WriteLine("\t\tThe poll is empty\n\t\tPress any key for continue"); Console.ReadKey();
-                    break;
-                }
+                    pool2.Remove(0);
+                    // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                    if (pool2.Count() > 0)
+                    {
+                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        bnod[i].left = bnod[tmpRnd];
+                        pool2.Remove(tmpRnd);
+                    }
 
-                tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
-                abn1[i].left = abn1[tmpRnd];
-                tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
-                abn1[i].right = abn1[tmpRnd];
+                    // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                    if (pool2.Count() > 0)
+                    {
+                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        bnod[i].right = bnod[tmpRnd];
+                        pool2.Remove(tmpRnd);
+                    }
 
-                if (rand.Next(0, 1) == 1)
-                {
-                    abn1[i].left = abn1[tmpRnd];
-                }
+                } // end_if_(pool
+
                 else
                 {
-                    tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
-                    abn1[i].right = abn1[tmpRnd];
+                    // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                    if (pool2.Count() > 0)
+                    {
+                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        bnod[i].left = bnod[tmpRnd];
+                        pool2.Remove(tmpRnd);
+                    }
+
+                    // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                    if (pool2.Count() > 0)
+                    {
+                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        bnod[i].right = bnod[tmpRnd];
+                        pool2.Remove(tmpRnd);
+                    }
                 }
-
-                if (i + 1 == qtyElements - 1) break;
-            }
-
-
-            */
+            } // end_of_for )(int i
+            Console.WriteLine("End of initTree");
         } // end_of_InitNodesTree
 
     }
