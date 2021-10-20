@@ -58,41 +58,13 @@ namespace Tasks
             int max1 = 1221;
             int tmpRnd = 0;
             BTreePrinter.BTreePrinter.BNode[] abn1 = new BTreePrinter.BTreePrinter.BNode[qtyElements];
-            List<int> pool = new List<int>(qtyElements);
-            
-            for (int i = 0; i < qtyElements; i++)
-            {
-                tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(min1, max1);
-                abn1[i] = new BTreePrinter.BTreePrinter.BNode(tmpRnd);
-            }
 
-
-            Random rand = new Random();
-            for (int i = 0; i < qtyElements; i++)
-            {
-                tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
-                abn1[i].left = abn1[tmpRnd];
-                tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
-                abn1[i].right = abn1[tmpRnd];
-
-                if (rand.Next(0, 1) == 1)
-                {
-                    abn1[i].left = abn1[tmpRnd];
-                }
-                else
-                {
-                    tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
-                    abn1[i].right = abn1[tmpRnd];
-                }
-
-                if (i + 1 == qtyElements - 1) break;
-            }
 
             Console.WriteLine("\t\tPrint?"); Console.ReadKey();
 
             foreach (var n1 in abn1)
             {
-                Console.WriteLine("item:[{0}]\t\t left:[{1}]\t\t right:[{2}]" , n1.item  , n1.left , n1.right);
+                Console.WriteLine("item:[{0}]\t\t left:[{1}]\t\t right:[{2}]", n1.item, n1.left, n1.right);
             }
 
             //BTreePrinter.BTreePrinter.Print(abn1[0]);

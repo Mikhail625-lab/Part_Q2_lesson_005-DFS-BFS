@@ -122,10 +122,79 @@ namespace BTreePrinter
             Console.ForegroundColor = Console.BackgroundColor;
             Console.BackgroundColor = color;
         }
-    
-    
-    
-    
+
+
+        public static void InitNodesTree(ref BTreePrinter.BNode[] bnod)
+        {
+            int tmpRnd;
+            bool validValue;
+            int countEmrg = 1_000;
+            int qtyElements = bnod.Length;
+            int min1 = 0;
+            int max1 = 1_000;
+
+
+            List<int> pool1 = new List<int>(qtyElements); // 
+            List<int> pool2 = new List<int>(); // список значений Data | Value | Item etc  . Для избежания повоторений and формирования множества 
+
+            // инициализация узлов , присвоение _уникальных_значений
+            for (int i = 0; i < qtyElements; i++)
+            {
+                countEmrg = 0; // на время отладки счётчик анти-бесконечного цикла while
+                do
+                {
+                    countEmrg++;
+                    validValue = false;
+                    if (countEmrg > 1000)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\t\tWarning !! qty iteration of WHILE more 1000");
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                    }
+
+                    tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(min1, max1);
+                    if (!(pool2.IndexOf(tmpRnd) > 0))  // may be null 
+                    {
+                        pool2.Add(tmpRnd);
+                        validValue = true;
+                        bnod[i] = new BNode(tmpRnd);
+                    }
+                } while (validValue == true);
+            }
+
+            
+            // связываем, назначаем дочек-сыночков
+            // //Random rand = new Random();
+            if (pool2.Count==bnod.Count)
+
+            for (int i = 0; i < qtyElements; i++)
+            {
+                if (pool.Count <= 0)
+                {
+                    Console.WriteLine("\t\tThe poll is empty\n\t\tPress any key for continue"); Console.ReadKey();
+                    break;
+                }
+
+                tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
+                abn1[i].left = abn1[tmpRnd];
+                tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
+                abn1[i].right = abn1[tmpRnd];
+
+                if (rand.Next(0, 1) == 1)
+                {
+                    abn1[i].left = abn1[tmpRnd];
+                }
+                else
+                {
+                    tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(i + 1, qtyElements - 1);
+                    abn1[i].right = abn1[tmpRnd];
+                }
+
+                if (i + 1 == qtyElements - 1) break;
+            }
+
+        }
+
     }
 
 
