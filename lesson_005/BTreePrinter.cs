@@ -153,7 +153,7 @@ namespace BTreePrinter
                     }
 
                     tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(min1, max1);
-                    if (!(pool2.IndexOf(tmpRnd) > 0))  // may be null 
+                    if (pool2.IndexOf(tmpRnd) < 0)  // may be null 
                     {
                         pool2.Add(tmpRnd);
                         validValue = true;
@@ -162,12 +162,23 @@ namespace BTreePrinter
                 } while (validValue == true);
             }
 
-            
+            for (int i = 0; i < qtyElements; i++)
+            { }
+            if (pool2.Count() == bnod.Count())
+            { pool2.Remove(0);
+            }
+            else
+            { }
+        } // end_of_for )(int i
+
+            /*
             // связываем, назначаем дочек-сыночков
             // //Random rand = new Random();
-            if (pool2.Count==bnod.Count)
+            
+            // get p{ }
 
-            for (int i = 0; i < qtyElements; i++)
+
+           
             {
                 if (pool.Count <= 0)
                 {
@@ -193,7 +204,9 @@ namespace BTreePrinter
                 if (i + 1 == qtyElements - 1) break;
             }
 
-        }
+
+            */
+        } // end_of_InitNodesTree
 
     }
 
