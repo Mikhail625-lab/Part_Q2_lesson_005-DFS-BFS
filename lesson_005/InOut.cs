@@ -14,7 +14,7 @@ namespace InOut
         {
             int result = 0;
             string textQuetionByDef = "\t\tEnter value and press [Enter]:";
-            var valueByDef = "1";
+            var valueByDef = "2";
             textQuestion = string.IsNullOrEmpty(textQuestion) == true ? textQuetionByDef : textQuestion;
             // Запрос на ввод значения . 
             Console.WriteLine("   " + textQuestion);

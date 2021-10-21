@@ -24,6 +24,7 @@ namespace Dispatcher
             {
                 Console.WriteLine(question1, i);
                 i = io1.GetValueFromConsole("");
+
                 switch (i)
                 {
                     case 0:
