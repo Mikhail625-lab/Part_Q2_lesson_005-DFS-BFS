@@ -91,7 +91,7 @@ namespace Tasks
 
             // int tmpRnd;
             bool validValue;
-            int countEmrg = 1_000;
+            int countEmrg = 0; // 1_000;
             int qtyElmn = abn1.Length;
             // int min1 = 0;
             // int max1 = 1_000;
@@ -101,9 +101,7 @@ namespace Tasks
             // инициализация узлов , присвоение _уникальных_значений
             for (int i = 0; i < qtyElmn; i++)
             {
-
-                // для обеспечения уникальности
-                
+                // для обеспечения уникальности              
                 do
                 {
                     countEmrg++;
@@ -113,95 +111,101 @@ namespace Tasks
                         Console.WriteLine("!!! Warning !!!! Infinity !!!");
                         break;
                     }
-                    Console.WriteLine("\t\tgenerate {0}   {1}   CountEmrg:{2}" , tmpRnd , pool1.IndexOf(tmpRnd) , countEmrg);
+
+                    if (pool1.IndexOf(tmpRnd) > -1)
+                    {
+                        Console.WriteLine("\t\t Совпадение ");
+                        Console.WriteLine("\t\tgenerate {0}\t\t pool1.IndexOf:{1}   CountEmrg:{2}", tmpRnd, pool1.IndexOf(tmpRnd), countEmrg);
+                    }
+                    //countEmrg = 0; // на время отладки счётчик анти-бесконечного цикла while
                 }
-                //countEmrg = 0; // на время отладки счётчик анти-бесконечного цикла while
-                while (pool1.IndexOf(tmpRnd) < 0);
-                abn1[i] = new BTreePrinter.BNode(tmpRnd);
+                while (pool1.IndexOf(tmpRnd) > -1);
+                Console.WriteLine( "item={0}"  , abn1[i]);
                 pool1.Add(tmpRnd);
                 countEmrg = 0;
-
             }
 
 
-            // раздача дочек-сыночков 
-            for (int i = 0; i < qtyElmn; i++)
-            {
-                if (pool1.Count() == 0) break;
-                if (i == 0)  // if (pool1.Count() == abn1.Count())
+                // раздача дочек-сыночков 
+                for (int i = 0; i < qtyElmn; i++)
                 {
-                    pool1.RemoveAt(0);
-                    // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
-                    if (pool1.Count() > 0)
+                    if (pool1.Count() == 0) break;
+                    if (i == 0)  // if (pool1.Count() == abn1.Count())
                     {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
-                        abn1[i].left = abn1[tmpRnd];
-                        pool1.RemoveAt(tmpRnd);
-                        //BTreePrinter.BTreePrinter.Print(abn1[0]);
-                        //Console.ReadKey();
+                        pool1.RemoveAt(0);
+                        // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                        if (pool1.Count() > 0)
+                        {
+                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                            abn1[i].left = abn1[tmpRnd];
+                            pool1.RemoveAt(tmpRnd);
+                            //BTreePrinter.BTreePrinter.Print(abn1[0]);
+                            //Console.ReadKey();
+                        }
+
+                        // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                        if (pool1.Count() > 0)
+                        {
+                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                            abn1[i].right = abn1[tmpRnd];
+                            pool1.RemoveAt(tmpRnd);
+                            // BTreePrinter.BTreePrinter.Print(abn1[0]);
+                            //Console.ReadKey();
+                        }
+
+                    } // end_if_(pool
+
+                    else
+                    {
+                        // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                        if (pool1.Count() > 0)
+                        {
+                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                            abn1[i].left = abn1[tmpRnd];
+                            pool1.RemoveAt(tmpRnd);
+                            //BTreePrinter.BTreePrinter.Print(abn1[0]);
+                            //Console.ReadKey();
+                        }
+
+                        // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
+                        if (pool1.Count() > 0)
+                        {
+                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                            abn1[i].right = abn1[tmpRnd];
+                            pool1.RemoveAt(tmpRnd);
+                            //BTreePrinter.BTreePrinter.Print(abn1[0]);
+                            //Console.ReadKey();
+
+                        }
                     }
 
-                    // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
-                    if (pool1.Count() > 0)
-                    {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
-                        abn1[i].right = abn1[tmpRnd];
-                        pool1.RemoveAt(tmpRnd);
-                        // BTreePrinter.BTreePrinter.Print(abn1[0]);
-                        //Console.ReadKey();
-                    }
+                    left1 = string.IsNullOrEmpty((abn1[i].left.item).ToString()) == true ? "" : ((abn1[i].left.item).ToString());
+                    right1 = (string.IsNullOrEmpty((abn1[i].right.item).ToString()) )== true ? "" : ((abn1[i].right.item).ToString());
+                    Console.WriteLine("\t\titem:[{0}]\tleft:[{1}]\tright:[{2}]", abn1[i].item, left1, right1);
+                } // end_of_for )(int i
 
-                } // end_if_(pool
-
-                else
-                {
-                    // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
-                    if (pool1.Count() > 0)
-                    {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
-                        abn1[i].left = abn1[tmpRnd];
-                        pool1.RemoveAt(tmpRnd);
-                        //BTreePrinter.BTreePrinter.Print(abn1[0]);
-                        //Console.ReadKey();
-                    }
-
-                    // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
-                    if (pool1.Count() > 0)
-                    {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
-                        abn1[i].right = abn1[tmpRnd];
-                        pool1.RemoveAt(tmpRnd);
-                        //BTreePrinter.BTreePrinter.Print(abn1[0]);
-                        //Console.ReadKey();
-
-                    }
+                BTreePrinter.BTreePrinter.Print(abn1[0]);
+                Console.WriteLine("End of initTree");
+                Console.ReadKey();
+                /*
+                foreach (var n1 in abn1)
+                { Console.WriteLine("item:[{0}]\t\t left:[{1}]\t\t right:[{2}]", n1.item, n1.left, n1.right);
                 }
+                */
 
-                left1  = string.IsNullOrEmpty((abn1[i].left.item).ToString())  == true ? "" : ((abn1[i].left.item).ToString());
-                right1 = string.IsNullOrEmpty((abn1[i].right.item).ToString()) == true ? "" : ((abn1[i].right.item).ToString());
-                Console.WriteLine("\t\titem:[{0}]\tleft:[{1}]\tright:[{2}]", abn1[i].item, left1, right1);
-            } // end_of_for )(int i
 
-            //BTreePrinter.BTreePrinter.Print(abn1[0]);
-            Console.WriteLine("End of initTree");
-            Console.ReadKey();
-            /*
-            foreach (var n1 in abn1)
-            { Console.WriteLine("item:[{0}]\t\t left:[{1}]\t\t right:[{2}]", n1.item, n1.left, n1.right);
+
+                Console.WriteLine("\t\tThats all for task #2"); Console.ReadKey();
             }
-            */
+
+
+            public void Task003()
+            {
+                Console.WriteLine("OK/ Now trying run the Task003 ... ");  //  Run (string TaskName)
+                Console.ReadKey();
+            }
+        } // end class Tasks 
 
 
 
-            Console.WriteLine("\t\tThats all for task #2"); Console.ReadKey();
-        }
-        public void Task003()
-        {
-            Console.WriteLine("OK/ Now trying run the Task003 ... ");  //  Run (string TaskName)
-            Console.ReadKey();
-        }
-    } // end class Tasks 
-
-
-
-}
+    }
