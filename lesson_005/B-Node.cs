@@ -212,8 +212,21 @@ namespace BNode
                     }
                 }
             } // end_of_for )(int i
+            Console.WriteLine("Print?");
+            Console.ReadKey();
+            BTreePrinter.BTreePrinter.Print(bnod[0]);
+
             Console.WriteLine("End of initTree");
         } // end_of_InitNodesTree
+
+        public BNode[] SetTree( BNode[] bnod)
+        {
+
+
+            return bnod;
+        }
+    
+    
     }
 
 
