@@ -139,8 +139,8 @@ namespace BNode
             int min1 = 0;
             int max1 = 1_000;
 
-           // List<int> pool1 = new List<int>(qtyElements); // 
-            List<int> pool2 = new List<int>(); // список значений Data | Value | Item etc  . Для избежания повоторений and формирования множества 
+           // Dictionary<int, int>  pool1 = new Dictionary<int, int> (qtyElements); // 
+List< int> pool2 = new List< int> (); // список значений Data | Value | Item etc  . Для избежания повоторений and формирования множества 
 
             // инициализация узлов , присвоение _уникальных_значений
             for (int i = 0; i < qtyElements; i++)

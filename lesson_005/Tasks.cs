@@ -86,7 +86,7 @@ namespace Tasks
             abn2[0] = new BTreePrinter.BNode(0);
             abn2[0].left = abn2[2];
             abn2[0].right = abn2[1];
-
+            Console.WriteLine("------------------------------------------");
             //BTreePrinter.BTreePrinter.Print(abn2[0]);
 
             // int tmpRnd;
@@ -112,15 +112,16 @@ namespace Tasks
                         break;
                     }
 
-                    if (pool1.IndexOf(tmpRnd) > -1)
+                    if (pool1.IndexOf(tmpRnd) < -1)
                     {
                         Console.WriteLine("\t\t Совпадение ");
                         Console.WriteLine("\t\tgenerate {0}\t\t pool1.IndexOf:{1}   CountEmrg:{2}", tmpRnd, pool1.IndexOf(tmpRnd), countEmrg);
                     }
                     //countEmrg = 0; // на время отладки счётчик анти-бесконечного цикла while
                 }
-                while (pool1.IndexOf(tmpRnd) > -1);
-                Console.WriteLine( "item={0}"  , abn1[i]);
+                while (pool1.IndexOf(tmpRnd) < 0);
+                abn1[i] = new BTreePrinter.BNode( tmpRnd ); 
+                Console.WriteLine( "\t\ti={0}.\t\titem={1}"  , i ,  abn1[i].item);
                 pool1.Add(tmpRnd);
                 countEmrg = 0;
             }
@@ -136,8 +137,10 @@ namespace Tasks
                         // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                         if (pool1.Count() > 0)
                         {
-                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                        
+                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].left = abn1[tmpRnd];
+
                             pool1.RemoveAt(tmpRnd);
                             //BTreePrinter.BTreePrinter.Print(abn1[0]);
                             //Console.ReadKey();
@@ -146,7 +149,7 @@ namespace Tasks
                         // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                         if (pool1.Count() > 0)
                         {
-                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].right = abn1[tmpRnd];
                             pool1.RemoveAt(tmpRnd);
                             // BTreePrinter.BTreePrinter.Print(abn1[0]);
@@ -160,7 +163,7 @@ namespace Tasks
                         // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                         if (pool1.Count() > 0)
                         {
-                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].left = abn1[tmpRnd];
                             pool1.RemoveAt(tmpRnd);
                             //BTreePrinter.BTreePrinter.Print(abn1[0]);
@@ -170,7 +173,7 @@ namespace Tasks
                         // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                         if (pool1.Count() > 0)
                         {
-                            tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1);
+                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].right = abn1[tmpRnd];
                             pool1.RemoveAt(tmpRnd);
                             //BTreePrinter.BTreePrinter.Print(abn1[0]);
