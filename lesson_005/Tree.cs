@@ -1,17 +1,15 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Tree
+
+namespace GB_Q2_lesson005
 {
     /// Tree
 
 
-    class Tree // Kata
+    public class Tree // Kata
     {
-        public static List<int> TreeByLevels(Node.Node node)
+        public static List<int> TreeByLevels(Node node)
         {
             //off ya go!
             var l1 = new List<int>();

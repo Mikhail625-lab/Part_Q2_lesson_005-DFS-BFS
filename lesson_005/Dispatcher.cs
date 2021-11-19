@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Dispatcher
+
+namespace GB_Q2_lesson005
 {
     //    internal class Dispatcher
 
 
-    class Dispatcher
+    public class Dispatcher
     {
         public void Run(string TaskName)
         {
@@ -17,8 +14,8 @@ namespace Dispatcher
             string question1 = "\t\tPlease, enter number task (1...5) or 0 (digit  zero)" +
                 "\n\t\tand press [Enter] :";
             string question2 = "\t\tOK. Your chice:[{0}]\n\t\tNow runing [Task00{0}]";
-            InOut.InOut io1 = new InOut.InOut();
-            Tasks.Tasks tsk1 = new Tasks.Tasks();
+           InOut io1 = new InOut();
+            Tasks tsk1 = new Tasks();
             int i = 1;
             do
             {

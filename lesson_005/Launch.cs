@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Launch
+﻿namespace GB_Q2_lesson005
 {
-    class Launch
+    public class Launch
     { }// end_of_class_Launch
 
 }

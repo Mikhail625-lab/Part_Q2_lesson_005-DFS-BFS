@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 
-namespace UtilitesRandom
+namespace GB_Q2_lesson005
 {
+
     public static class RandomProvider
     {
         private static int seed = Environment.TickCount;
@@ -15,7 +14,7 @@ namespace UtilitesRandom
             new Random(Interlocked.Increment(ref seed))
         );
 
-        public static string  GetThreadRandomStringValue(int min , int max)
+        public static string GetThreadRandomStringValue(int min, int max)
         {
             return randomWrapper.Value.Next(min, max).ToString("D6");
         }
@@ -26,4 +25,29 @@ namespace UtilitesRandom
 
 
     }
+
+    public class KeyGenerator
+    {
+        public static string GetUniqueKey(int maxSize)
+        {
+            char[] chars = new char[62];
+            chars =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            byte[] data = new byte[1];
+            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+            {
+                crypto.GetNonZeroBytes(data);
+                data = new byte[maxSize];
+                crypto.GetNonZeroBytes(data);
+            }
+            StringBuilder result = new StringBuilder(maxSize);
+            foreach (byte b in data)
+            {
+                result.Append(chars[b % (chars.Length)]);
+            }
+            return result.ToString();
+        } // end_of_GetUniqueKey(int maxSize)
+    
 }
+
+} // end_of_UtilitesRandom

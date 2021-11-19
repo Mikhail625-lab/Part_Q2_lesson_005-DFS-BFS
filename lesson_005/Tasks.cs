@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+/*
 using BNode;
 using Launch;
 using Dispatcher;
@@ -14,14 +14,14 @@ using Tree;
 using Node;
 using BTreePrinter;
 using UtilitesRandom;
+*/
 
 
-
-namespace Tasks
+namespace GB_Q2_lesson005
 {
     // Tasks
 
-    class Tasks  // class Tasks - непосредственно код решения задач 
+    public class Tasks  // class Tasks - непосредственно код решения задач 
     {
         public void Task001()
         {
@@ -29,19 +29,19 @@ namespace Tasks
             //Console.ReadKey();
             Thread.Sleep(900);
             int qtyNodes = 11;
-            Tree.Tree tree1 = new Tree.Tree();
-            Node.Node[] nodes1 = new Node.Node[qtyNodes];
+            Tree tree1 = new Tree();
+            Node[] nodes1 = new Node[qtyNodes];
             // https://www.tutlane.com/tutorial/csharp/csharp-list
             // List<Node>[] aln1 = new List<Node>[qtyNodes]; //with List<> пока не получается 
-            Node.Node[] an1 = new Node.Node[qtyNodes];
+            Node[] an1 = new Node[qtyNodes];
 
             for (int i = 0; i < qtyNodes; i++)
             {
-                an1[i] = new Node.Node() { Value = i * i };
+                an1[i] = new Node() { Value = i * i };
                 an1[i].data = i;
             }
 
-            foreach (Node.Node n in an1) { n.DisplayInfo(); }
+            foreach (Node n in an1) { n.DisplayInfo(); }
 
 
 
@@ -57,33 +57,33 @@ namespace Tasks
             int min1 = 0;
             int max1 = 1221;
             int tmpRnd = 0;
-            BTreePrinter.BNode[] abn1 = new BTreePrinter.BNode[qtyElements];
+            BNode[] abn1 = new BNode[qtyElements];
             //Console.WriteLine("\t\t Contiue?"); Console.ReadKey();
 
             /// test without 
             /// 
             string left1; string right1;
-            BTreePrinter.BNode[] abn2 = new BTreePrinter.BNode[9];
+            BNode[] abn2 = new BNode[9];
 
-            abn2[8] = new BTreePrinter.BNode(8);
-            abn2[7] = new BTreePrinter.BNode(7);
-            abn2[6] = new BTreePrinter.BNode(6);
+            abn2[8] = new BNode(8);
+            abn2[7] = new BNode(7);
+            abn2[6] = new BNode(6);
             abn2[6].left = abn2[8];
 
-            abn2[5] = new BTreePrinter.BNode(5);
-            abn2[4] = new BTreePrinter.BNode(4);
-            abn2[3] = new BTreePrinter.BNode(3);
+            abn2[5] = new BNode(5);
+            abn2[4] = new BNode(4);
+            abn2[3] = new BNode(3);
             abn2[3].right = abn2[7];
 
-            abn2[2] = new BTreePrinter.BNode(2);
+            abn2[2] = new BNode(2);
             abn2[2].left = abn2[6];
             abn2[2].right = abn2[5];
 
-            abn2[1] = new BTreePrinter.BNode(1);
+            abn2[1] = new BNode(1);
             abn2[1].left = abn2[4];
             abn2[1].right = abn2[3];
 
-            abn2[0] = new BTreePrinter.BNode(0);
+            abn2[0] = new BNode(0);
             abn2[0].left = abn2[2];
             abn2[0].right = abn2[1];
             Console.WriteLine("------------------------------------------");
@@ -105,7 +105,7 @@ namespace Tasks
                 do
                 {
                     countEmrg++;
-                    tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(min1, max1);
+                    tmpRnd = (int) RandomProvider.GetThreadRandomUIntValue(min1, max1);
                     if (countEmrg > 100)
                     {
                         Console.WriteLine("!!! Warning !!!! Infinity !!!");
@@ -120,7 +120,7 @@ namespace Tasks
                     //countEmrg = 0; // на время отладки счётчик анти-бесконечного цикла while
                 }
                 while (pool1.IndexOf(tmpRnd) < 0);
-                abn1[i] = new BTreePrinter.BNode( tmpRnd ); 
+                abn1[i] = new BNode( tmpRnd ); 
                 Console.WriteLine( "\t\ti={0}.\t\titem={1}"  , i ,  abn1[i].item);
                 pool1.Add(tmpRnd);
                 countEmrg = 0;
@@ -138,7 +138,7 @@ namespace Tasks
                         if (pool1.Count() > 0)
                         {
                         
-                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
+                            tmpRnd = pool1.ElementAt((int) RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].left = abn1[tmpRnd];
 
                             pool1.RemoveAt(tmpRnd);
@@ -149,7 +149,7 @@ namespace Tasks
                         // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                         if (pool1.Count() > 0)
                         {
-                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
+                            tmpRnd = pool1.ElementAt((int) RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].right = abn1[tmpRnd];
                             pool1.RemoveAt(tmpRnd);
                             // BTreePrinter.BTreePrinter.Print(abn1[0]);
@@ -163,7 +163,7 @@ namespace Tasks
                         // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                         if (pool1.Count() > 0)
                         {
-                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
+                            tmpRnd = pool1.ElementAt((int) RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].left = abn1[tmpRnd];
                             pool1.RemoveAt(tmpRnd);
                             //BTreePrinter.BTreePrinter.Print(abn1[0]);
@@ -173,7 +173,7 @@ namespace Tasks
                         // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                         if (pool1.Count() > 0)
                         {
-                            tmpRnd = pool1.ElementAt((int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
+                            tmpRnd = pool1.ElementAt((int) RandomProvider.GetThreadRandomUIntValue(0, pool1.Count() - 1));
                             abn1[i].right = abn1[tmpRnd];
                             pool1.RemoveAt(tmpRnd);
                             //BTreePrinter.BTreePrinter.Print(abn1[0]);
@@ -187,7 +187,7 @@ namespace Tasks
                     Console.WriteLine("\t\titem:[{0}]\tleft:[{1}]\tright:[{2}]", abn1[i].item, left1, right1);
                 } // end_of_for )(int i
 
-                BTreePrinter.BTreePrinter.Print(abn1[0]);
+                BTreePrinter.Print(abn1[0]);
                 Console.WriteLine("End of initTree");
                 Console.ReadKey();
                 /*

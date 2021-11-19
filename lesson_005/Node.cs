@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Node
+namespace GB_Q2_lesson005
 {
-    class Node
+   public class Node
     {
+
         public Node Left;
         public Node Right;
         public int Value;
         public int data;
         public bool IsLeaf;
         public bool Visit;
-
         public int Data
-        {
-            get { return data; }
-            set { data = value; }
-        }
-        public Node()
+ 
+        public Node() // <-- constructor
         { Data = 0; }
         public Node(Node l, Node r, int v)
         {

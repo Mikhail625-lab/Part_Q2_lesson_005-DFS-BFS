@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace InOut
+namespace GB_Q2_lesson005
 {
     // InOut
 
-    class InOut
+    public class InOut
     {
         public int GetValueFromConsole(string textQuestion)
         {

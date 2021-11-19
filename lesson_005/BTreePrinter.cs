@@ -1,27 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using BNode;
-
-
-
-namespace BTreePrinter
+namespace GB_Q2_lesson005
 {
     //internal class BeTreePrinter
-    public class BNode
-    {
-        public int item;
-        public BNode right;
-        public BNode left;
 
-        public BNode(int item)
-        {
-            this.item = item;
-        }
-    }
 
     public static class BTreePrinter
     {

@@ -1,24 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BTreePrinter;
 
-namespace BNode
+namespace GB_Q2_lesson005
 {
     // from :  https://fooobar.com/questions/128669/c-display-a-binary-search-tree-in-console
     public class BNode
     {
+
         public int item;
         public BNode right;
         public BNode left;
 
-        public BNode(int item)
+
+        public BNode() // <-- constructor 1 
         {
-            this.item = item;
+            item = 0;
+        }
+        public BNode(int itemData)  // <-- constructor 2
+        {
+            item = itemData;
         }
     }
+
+
+
 
     public class BTree
     {
@@ -50,6 +56,8 @@ namespace BNode
 
         private bool Add_Sub(BNode Node, int Item)
         {
+
+
             if (_comparer.Compare(Node.item, Item) < 0)
             {
                 if (Node.right == null)
@@ -119,18 +127,11 @@ namespace BNode
         //*/
 
 
-
-
-
-
-
     }
-
-
 
     public class Init
     {
-        public static void NodesTree(ref BTreePrinter.BNode[] bnod)
+        public static void NodesTree(ref BNode[] bnod)
         {
             int tmpRnd;
             bool validValue;
@@ -139,8 +140,8 @@ namespace BNode
             int min1 = 0;
             int max1 = 1_000;
 
-           // Dictionary<int, int>  pool1 = new Dictionary<int, int> (qtyElements); // 
-List< int> pool2 = new List< int> (); // список значений Data | Value | Item etc  . Для избежания повоторений and формирования множества 
+            // Dictionary<int, int>  pool1 = new Dictionary<int, int> (qtyElements); // 
+            List<int> pool2 = new List<int>(); // список значений Data | Value | Item etc  . Для избежания повоторений and формирования множества 
 
             // инициализация узлов , присвоение _уникальных_значений
             for (int i = 0; i < qtyElements; i++)
@@ -157,16 +158,15 @@ List< int> pool2 = new List< int> (); // список значений Data | Va
                         Console.ForegroundColor = ConsoleColor.DarkGray;
                     }
 
-                    tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(min1, max1);
+                    tmpRnd = (int)RandomProvider.GetThreadRandomUIntValue(min1, max1);
                     if (pool2.IndexOf(tmpRnd) < 0)  // may be null 
                     {
                         pool2.Add(tmpRnd);
                         validValue = true;
-                        bnod[i] = new BTreePrinter.BNode(tmpRnd);
+                        bnod[i] = new BNode(tmpRnd);
                     }
                 } while (validValue == true);
             }
-
 
             // раздача дочек-сыночков 
             for (int i = 0; i < qtyElements; i++)
@@ -178,7 +178,7 @@ List< int> pool2 = new List< int> (); // список значений Data | Va
                     // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                     if (pool2.Count() > 0)
                     {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        tmpRnd = (int)RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
                         bnod[i].left = bnod[tmpRnd];
                         pool2.Remove(tmpRnd);
                     }
@@ -186,7 +186,7 @@ List< int> pool2 = new List< int> (); // список значений Data | Va
                     // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                     if (pool2.Count() > 0)
                     {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        tmpRnd = (int)RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
                         bnod[i].right = bnod[tmpRnd];
                         pool2.Remove(tmpRnd);
                     }
@@ -198,7 +198,7 @@ List< int> pool2 = new List< int> (); // список значений Data | Va
                     // set left  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                     if (pool2.Count() > 0)
                     {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        tmpRnd = (int)RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
                         bnod[i].left = bnod[tmpRnd];
                         pool2.Remove(tmpRnd);
                     }
@@ -206,7 +206,7 @@ List< int> pool2 = new List< int> (); // список значений Data | Va
                     // set right  direct descendant / direct derivative(прямой потомок)	 декомпоз: вынести в отд метод
                     if (pool2.Count() > 0)
                     {
-                        tmpRnd = (int)UtilitesRandom.RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
+                        tmpRnd = (int)RandomProvider.GetThreadRandomUIntValue(0, pool2.Count());
                         bnod[i].right = bnod[tmpRnd];
                         pool2.Remove(tmpRnd);
                     }
@@ -214,19 +214,19 @@ List< int> pool2 = new List< int> (); // список значений Data | Va
             } // end_of_for )(int i
             Console.WriteLine("Print?");
             Console.ReadKey();
-            BTreePrinter.BTreePrinter.Print(bnod[0]);
+            BTreePrinter.Print(bnod[0]);
 
             Console.WriteLine("End of initTree");
         } // end_of_InitNodesTree
 
-        public BNode[] SetTree( BNode[] bnod)
+        public BNode[] SetTree(BNode[] bnod)
         {
 
 
             return bnod;
         }
-    
-    
+
+
     }
 
 

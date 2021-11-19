@@ -12,29 +12,6 @@ Tip: for formatting Ctrl + K, а затем Ctrl + D.
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Numerics;
-using System.Threading;
-/*
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
-*/
-using UtilitesRandom;
-using BNode;
-using  Launch ;
-using  Dispatcher ;
-using  Tasks ;
-using  InOut ;
-using  Tree ;
-using  Node ;
-
-
-
-
 
 namespace GB_Q2_lesson005
 {
@@ -43,8 +20,10 @@ namespace GB_Q2_lesson005
         static void Main(string[] args)
         {
             Console.WriteLine("                ............... begin ... ");
-            Dispatcher.Dispatcher d1 = new Dispatcher.Dispatcher();
+            Dispatcher d1 = new Dispatcher();
             d1.Run("T1");
+            BNode zxc = new BNode(2);
+            
         }  // end_of_Main()
     }// end_of_class Program
 
